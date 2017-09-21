@@ -12,18 +12,19 @@ RUN /usr/sbin/groupadd --gid $CONTAINER_GID logio && \
 
 # install dev tools
 ENV VOLUME_DIRECTORY=/opt/server
-RUN curl --silent --location https://rpm.nodesource.com/setup | bash - && \
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
     yum install -y \
     curl \
     nodejs \
     wget \
     gcc-c++ \
     openssl \
+    git-core \
     make && \
     yum clean all && rm -rf /var/cache/yum/* && \
     mkdir -p ${VOLUME_DIRECTORY}/keys && \
     chown -R $CONTAINER_UID:$CONTAINER_GID ${VOLUME_DIRECTORY}/keys && \
-    npm install -g log.io --user 'root'
+    npm install -g https://github.com/prugel/Log.io.git --user 'root'
 
 ENV DELAYED_START=
 ENV LOGIO_ADMIN_USER=
@@ -31,6 +32,7 @@ ENV LOGIO_ADMIN_PASSWORD=
 ENV LOGIO_CERTIFICATE_DNAME=
 ENV LOGIO_HARVESTER_MASTER_HOST=
 ENV LOGIO_HARVESTER_MASTER_PORT=
+ENV LOGIO_HARVESTER_SSL=
 ENV LOGIO_HARVESTER_NODENAME=
 ENV LOGIO_HARVESTER_STREAMNAME=
 ENV LOGIO_HARVESTER_LOGFILES=

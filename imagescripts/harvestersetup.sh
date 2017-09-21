@@ -26,6 +26,10 @@ function resolveMasterSetting() {
   if [ -n "${LOGIO_HARVESTER_MASTER_PORT}" ]; then
     logio_master_port=${LOGIO_HARVESTER_MASTER_PORT}
   fi
+  logio_ssl="false";
+  if [ -n "${LOGIO_HARVESTER_SSL}" ]; then
+    logio_ssl=${LOGIO_HARVESTER_SSL}
+  fi
 }
 
 function crawlLogFiles() {
@@ -194,7 +198,8 @@ _EOF_
   },
   server: {
     host: '${logio_master}',
-    port: ${logio_master_port}
+    port: ${logio_master_port},
+    ssl: ${logio_ssl}
   }
 }
 _EOF_

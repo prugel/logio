@@ -1,0 +1,14 @@
+version: '2'
+services:
+  logioweb:
+    image: 'clingstack/logio:latest'
+    container_name: logio
+    environment:
+      # - LOGIO_ADMIN_USER=
+      # - LOGIO_ADMIN_PASSWORD=
+      - LOGIO_CERTIFICATE_DNAME=/CN=james/OU=clingstack/O=clingstack.com/L=Suwon/C=KR
+    ports:
+      - '28778:28778'
+      - '28777:28777'
+    volumes:
+      - '/opt/server'

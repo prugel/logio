@@ -1,0 +1,19 @@
+version: '2'
+services:
+  harvester:
+    image: clingstack/logio:latest
+    container_name: logio-harvest
+    environment:
+      - DELAYED_START=10
+      - LOGIO_HARVESTER_NODENAME=clingstack
+      - LOGIO_HARVESTER_STREAMNAME=pm2logs
+      - LOGIO_HARVESTER_MASTER_HOST=192.168.0.104
+      - LOGIO_HARVESTER_MASTER_PORT=28777
+      - LOGIO_HARVESTER_SSL=true
+      - LOGIO_HARVESTER_LOGFILES=
+      - LOGS_DIRECTORIES=/var/lib/logs
+      - LOG_FILE_PATTERN=*.log
+    volumes:
+      - /home/prugel/production/clingstack.com/.log:/var/lib/logs
+    user: root
+    command: harvester

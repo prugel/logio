@@ -43,7 +43,17 @@ cat ~/.log.io/web_server.conf
 cat > ~/.log.io/log_server.conf <<_EOF_
 exports.config = {
   host: '0.0.0.0',
-  port: 28777
+  port: 28777,
+_EOF_
+if [ -n "$LOGIO_CERTIFICATE_DNAME" ]; then
+  cat >> ~/.log.io/log_server.conf <<_EOF_
+  ssl: {
+    key: '/opt/server/keys/server.key',
+    cert: '/opt/server/keys/server.crt'
+  }
+_EOF_
+fi
+  cat >> ~/.log.io/log_server.conf <<_EOF_
 }
 _EOF_
 cat ~/.log.io/log_server.conf
