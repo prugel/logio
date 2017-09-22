@@ -6,7 +6,8 @@ services:
     environment:
       # - LOGIO_ADMIN_USER=
       # - LOGIO_ADMIN_PASSWORD=
-      - LOGIO_CERTIFICATE_DNAME=/CN=james/OU=clingstack/O=clingstack.com/L=Suwon/C=KR
+      - LOGIO_CERTIFICATE_DNAME=/CN=clingstack.com/OU=clingstack/O=clingstack.com/L=Suwon/C=KR
+      - LOGIO_CERTIFICATE_SUBJECTALTNAME=DNS:clingstack.com,DNS:www.clingstack.com
     ports:
       - '28778:28778'
       - '28777:28777'
